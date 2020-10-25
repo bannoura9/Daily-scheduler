@@ -1,9 +1,6 @@
-// display current Date
-
-$("#currentDay").text(moment().format('dddd, MMMM Do'));
-
-//------------------
-//Declare Variables, array with objects.
+// display cuurent Date
+$("#currentDay").text(moment().format("dddd, MMMM Do"));
+//Declare Variables
 var schedule = [
    {
       time: "09:00 AM",
@@ -13,95 +10,89 @@ var schedule = [
    {
       time: "10:00 AM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
       time: "11:00 AM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
       time: "12:00 PM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
-      time: "01:00 PM",
+      time: "13:00 PM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
-      time: "02:00 PM",
+      time: "14:00 PM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
-      time: "03:00 PM",
+      time: "15:00 PM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
-      time: "04:00 PM",
+      time: "16:00 PM",
       des: "",
-      bt: "save",
+      bt: "Save",
    },
    {
-      time: "05:00 PM",
+      time: "17:00 PM",
       des: "",
-      bt: "save",
+      bt: "Save",
    }
-]
-
-   // Targeting Time, Description and Button through classes
-   var scheduleTimeDiv = $(".time-block");
-   var scheduleDesDiv = $(".description");
-   var scheduleSaveDiv = $(".saveBtn");
-
-//  var value = $(this).siblings(scheduleTimeDiv).val()
-//  var time = $(this).siblings(scheduleDesDiv).val() 
-var currentHour = parseInt(moment().format('hh A'));
-
+];
+// Declare vars
+var currentHour = parseInt(moment().format("HH:mm"));
+console.log(currentHour)
+// for loop for schedule array objects.
 $.each(schedule, function (key, value) {
-   // var dt = new Date();
-   // var hours = dt.getHours() ; // gives the value in 24 hours format
-   // hours = parseInt(hours)
-   let temp = value.time[0]+value.time[1];
-   temp = parseInt(temp)
-   console.log(temp)
-   // console.log(currentHour)
+  
 
+   let temp = value.time[0] + value.time[1];
+   temp = parseInt(value.time.split(" ")[0]);
+   // console.log("block hour", temp)
    var newRow = $("<div>")
    newRow.addClass("row")
-
+   //if else statement to check if the it is in past, present or future. textarea will change color accordingly
    if (temp < currentHour) {
-      newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br>");
+      newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br/>");
       newRow.append("<textarea class='past col-md-8'>" + value.des + "</textarea>");
-      newRow.append("<div class='saveBtn col-md-2'>" + value.bt + "</div>" + "<br>");
-      $(".container").append(newRow)
+      newRow.append("<div class='saveBtn col-md-2'>" + value.bt + "</div><br/>");
+      $(".container").append(newRow);
    }
-   else if(temp === currentHour)  {
-   newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br>");
+   else if (temp === currentHour) {
+      newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br/>");
       newRow.append("<textarea class='present col-md-8'>" + value.des + "</textarea>");
-      newRow.append("<div class='saveBtn col-md-2'>" + value.bt + "</div>" + "<br>");
-      $(".container").append(newRow)
-      
+      newRow.append("<div class='saveBtn col-md-2'>" + value.bt + "</div><br/>");
+      $(".container").append(newRow);
    }
-   if(temp > currentHour)  {
-      newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br>");
+   else {
+      newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br/>");
       newRow.append("<textarea class='future col-md-8'>" + value.des + "</textarea>");
-      newRow.append("<div class='saveBtn col-md-2'>" + value.bt + "</div>" + "<br>");
-      $(".container").append(newRow)
+      newRow.append("<div class='saveBtn col-md-2'>" + value.bt + "</div><br/>");
+      $(".container").append(newRow);
    }
-   var localDes = localStorage.getItem(value.time)
-   $(this).find("textarea").val(localDes);
-   console.log(currentHour)
 });
-
-$(".saveBtn").on("click", function(time, value) {
-    var time = $(this).siblings(".hour").text();
+//loop through all elements. to retrive local storage values and set it to the relevant textarea. 
+$(".row").each(function () {
+   //seacch the hour within the row 
+   var timeStamp = $(this).find(".hour").text();
+   var localDes = localStorage.getItem(timeStamp);
+   
+   //set it to the text area with the stored local stoarge values 
+   $(this).find("textarea").val(localDes);
+});
+//On click on the Save button set value in local Storage with timestamp and Description for it. 
+$(".saveBtn").on("click", function (time, value) {
+   var time = $(this).siblings(".hour").text();
    //  console.log(time)
-    var des = $(this).siblings("textarea").val();
+   var des = $(this).siblings("textarea").val();
    localStorage.setItem(time, des);
 });
-
-
