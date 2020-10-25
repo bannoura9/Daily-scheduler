@@ -1,4 +1,5 @@
 # Daily-scheduler
+<<<<<<< HEAD
 
 ## how to use Daily schedule.
 
@@ -31,3 +32,5 @@ https://bannoura9.github.io/Daily-scheduler/Develop/index.html
 <img width="300" src="Assets/Screenshots/three.png" alt="3rd screenshot"> <br>
 <img width="300" src="Assets/Screenshots/four.png" alt="4th screenshot"> <br>
 <img width="300" src="Assets/Screenshots/five.png" alt=" screenshot">
+=======
+>>>>>>> 1067f98cc7c4792c2240645f7ca1b4018e09eb83
