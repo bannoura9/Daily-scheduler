@@ -1,17 +1,24 @@
 // display current Date
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Declare Variables
+<<<<<<< HEAD
 //  var x = document.createElement('img');
 //    x.setAttribute('src', '/Assets/images/save.png');
 //    x.setAttribute("width", "50");
 //    x.setAttribute("height", "50");
 //    document.body.appendChild(x);
+=======
+>>>>>>> 998c56295b920e704bb22376ebf35becb89402ec
 
 var schedule = [
    {
       time: "09:00 AM",
       des: "",
+<<<<<<< HEAD
       bt: "save",
+=======
+      bt: "Save",
+>>>>>>> 998c56295b920e704bb22376ebf35becb89402ec
    },
    {
       time: "10:00 AM",
