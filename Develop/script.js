@@ -1,54 +1,57 @@
-// display cuurent Date
+// display current Date
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Declare Variables
-var x = document.createElement("IMG");
-  x.setAttribute("src", "Daily-scheduler/Assets/images/save.png");
-  document.body.appendChild(x);
+//  var x = document.createElement('img');
+//    x.setAttribute('src', '/Assets/images/save.png');
+//    x.setAttribute("width", "50");
+//    x.setAttribute("height", "50");
+//    document.body.appendChild(x);
+
 var schedule = [
    {
       time: "09:00 AM",
       des: "",
-      bt: x,
+      bt: "save",
    },
    {
       time: "10:00 AM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "11:00 AM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "12:00 PM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "13:00 PM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "14:00 PM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "15:00 PM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "16:00 PM",
       des: "",
-      bt: "Save",
+      bt: "save",
    },
    {
       time: "17:00 PM",
       des: "",
-      bt: "Save",
+      bt: "save",
    }
 ];
 // Declare vars
@@ -56,13 +59,13 @@ var currentHour = parseInt(moment().format("HH:mm"));
 console.log(currentHour)
 // for loop for schedule array objects.
 $.each(schedule, function (key, value) {
-  
+ 
 
    let temp = value.time[0] + value.time[1];
    temp = parseInt(value.time.split(" ")[0]);
    // console.log("block hour", temp)
    var newRow = $("<div>")
-   newRow.addClass("row")
+   newRow.addClass("row");
    //if else statement to check if the it is in past, present or future. textarea will change color accordingly
    if (temp < currentHour) {
       newRow.append("<div class='hour col-md-2'>" + value.time + "</div>" + "<br/>");
@@ -85,11 +88,11 @@ $.each(schedule, function (key, value) {
 });
 //loop through all elements. to retrive local storage values and set it to the relevant textarea. 
 $(".row").each(function () {
-   //seacch the hour within the row 
+   //search the hour within the row 
    var timeStamp = $(this).find(".hour").text();
    var localDes = localStorage.getItem(timeStamp);
    
-   //set it to the text area with the stored local stoarge values 
+   //set it to the text area with the stored local storage values 
    $(this).find("textarea").val(localDes);
 });
 //On click on the Save button set value in local Storage with timestamp and Description for it. 
