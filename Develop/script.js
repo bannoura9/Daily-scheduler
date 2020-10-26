@@ -1,11 +1,14 @@
 // display cuurent Date
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Declare Variables
+var x = document.createElement("IMG");
+  x.setAttribute("src", "Daily-scheduler/Assets/images/save.png");
+  document.body.appendChild(x);
 var schedule = [
    {
       time: "09:00 AM",
       des: "",
-      bt: "Save",
+      bt: x,
    },
    {
       time: "10:00 AM",
